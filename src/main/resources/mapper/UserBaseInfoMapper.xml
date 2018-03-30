@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.test.demo.dao.UserBaseInfoMapper">
+  <resultMap id="BaseResultMap" type="com.test.demo.entity.UserBaseInfo">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="nick_name" jdbcType="VARCHAR" property="nickName" />
+    <result column="head_image_url" jdbcType="VARCHAR" property="headImageUrl" />
+    <result column="sex" jdbcType="INTEGER" property="sex" />
+    <result column="age" jdbcType="INTEGER" property="age" />
+    <result column="open_id" jdbcType="VARCHAR" property="openId" />
+    <result column="cell_phone" jdbcType="VARCHAR" property="cellPhone" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="user_status" jdbcType="INTEGER" property="userStatus" />
+    <result column="user_city_id" jdbcType="INTEGER" property="userCityId" />
+    <result column="real_name" jdbcType="VARCHAR" property="realName" />
+    <result column="id_card" jdbcType="VARCHAR" property="idCard" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, nick_name, head_image_url, sex, age, open_id, cell_phone, create_time, user_status, 
+    user_city_id, real_name, id_card
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user_base_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from user_base_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.test.demo.entity.UserBaseInfo">
+    insert into user_base_info (id, nick_name, head_image_url, 
+      sex, age, open_id, cell_phone, 
+      create_time, user_status, user_city_id, 
+      real_name, id_card)
+    values (#{id,jdbcType=INTEGER}, #{nickName,jdbcType=VARCHAR}, #{headImageUrl,jdbcType=VARCHAR}, 
+      #{sex,jdbcType=INTEGER}, #{age,jdbcType=INTEGER}, #{openId,jdbcType=VARCHAR}, #{cellPhone,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{userStatus,jdbcType=INTEGER}, #{userCityId,jdbcType=INTEGER}, 
+      #{realName,jdbcType=VARCHAR}, #{idCard,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.test.demo.entity.UserBaseInfo">
+    insert into user_base_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="nickName != null">
+        nick_name,
+      </if>
+      <if test="headImageUrl != null">
+        head_image_url,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="age != null">
+        age,
+      </if>
+      <if test="openId != null">
+        open_id,
+      </if>
+      <if test="cellPhone != null">
+        cell_phone,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="userStatus != null">
+        user_status,
+      </if>
+      <if test="userCityId != null">
+        user_city_id,
+      </if>
+      <if test="realName != null">
+        real_name,
+      </if>
+      <if test="idCard != null">
+        id_card,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="nickName != null">
+        #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="headImageUrl != null">
+        #{headImageUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="age != null">
+        #{age,jdbcType=INTEGER},
+      </if>
+      <if test="openId != null">
+        #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="cellPhone != null">
+        #{cellPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userStatus != null">
+        #{userStatus,jdbcType=INTEGER},
+      </if>
+      <if test="userCityId != null">
+        #{userCityId,jdbcType=INTEGER},
+      </if>
+      <if test="realName != null">
+        #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="idCard != null">
+        #{idCard,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.test.demo.entity.UserBaseInfo">
+    update user_base_info
+    <set>
+      <if test="nickName != null">
+        nick_name = #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="headImageUrl != null">
+        head_image_url = #{headImageUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        sex = #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="age != null">
+        age = #{age,jdbcType=INTEGER},
+      </if>
+      <if test="openId != null">
+        open_id = #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="cellPhone != null">
+        cell_phone = #{cellPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userStatus != null">
+        user_status = #{userStatus,jdbcType=INTEGER},
+      </if>
+      <if test="userCityId != null">
+        user_city_id = #{userCityId,jdbcType=INTEGER},
+      </if>
+      <if test="realName != null">
+        real_name = #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="idCard != null">
+        id_card = #{idCard,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.test.demo.entity.UserBaseInfo">
+    update user_base_info
+    set nick_name = #{nickName,jdbcType=VARCHAR},
+      head_image_url = #{headImageUrl,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=INTEGER},
+      age = #{age,jdbcType=INTEGER},
+      open_id = #{openId,jdbcType=VARCHAR},
+      cell_phone = #{cellPhone,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      user_status = #{userStatus,jdbcType=INTEGER},
+      user_city_id = #{userCityId,jdbcType=INTEGER},
+      real_name = #{realName,jdbcType=VARCHAR},
+      id_card = #{idCard,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

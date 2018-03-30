@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.test.demo.dao.DriverTripInfoMapper">
+  <resultMap id="BaseResultMap" type="com.test.demo.entity.DriverTripInfo">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="route_id" jdbcType="INTEGER" property="routeId" />
+    <result column="trip_date" jdbcType="DATE" property="tripDate" />
+    <result column="trip_time" jdbcType="TIME" property="tripTime" />
+    <result column="seat_count" jdbcType="INTEGER" property="seatCount" />
+    <result column="way_tags_id" jdbcType="VARCHAR" property="wayTagsId" />
+    <result column="trip_status" jdbcType="INTEGER" property="tripStatus" />
+    <result column="trip_price" jdbcType="INTEGER" property="tripPrice" />
+    <result column="trip_distance" jdbcType="INTEGER" property="tripDistance" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, route_id, trip_date, trip_time, seat_count, way_tags_id, trip_status, trip_price, 
+    trip_distance
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from driver_trip_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from driver_trip_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.test.demo.entity.DriverTripInfo">
+    insert into driver_trip_info (id, route_id, trip_date, 
+      trip_time, seat_count, way_tags_id, 
+      trip_status, trip_price, trip_distance
+      )
+    values (#{id,jdbcType=INTEGER}, #{routeId,jdbcType=INTEGER}, #{tripDate,jdbcType=DATE}, 
+      #{tripTime,jdbcType=TIME}, #{seatCount,jdbcType=INTEGER}, #{wayTagsId,jdbcType=VARCHAR}, 
+      #{tripStatus,jdbcType=INTEGER}, #{tripPrice,jdbcType=INTEGER}, #{tripDistance,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.test.demo.entity.DriverTripInfo">
+    insert into driver_trip_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="routeId != null">
+        route_id,
+      </if>
+      <if test="tripDate != null">
+        trip_date,
+      </if>
+      <if test="tripTime != null">
+        trip_time,
+      </if>
+      <if test="seatCount != null">
+        seat_count,
+      </if>
+      <if test="wayTagsId != null">
+        way_tags_id,
+      </if>
+      <if test="tripStatus != null">
+        trip_status,
+      </if>
+      <if test="tripPrice != null">
+        trip_price,
+      </if>
+      <if test="tripDistance != null">
+        trip_distance,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="routeId != null">
+        #{routeId,jdbcType=INTEGER},
+      </if>
+      <if test="tripDate != null">
+        #{tripDate,jdbcType=DATE},
+      </if>
+      <if test="tripTime != null">
+        #{tripTime,jdbcType=TIME},
+      </if>
+      <if test="seatCount != null">
+        #{seatCount,jdbcType=INTEGER},
+      </if>
+      <if test="wayTagsId != null">
+        #{wayTagsId,jdbcType=VARCHAR},
+      </if>
+      <if test="tripStatus != null">
+        #{tripStatus,jdbcType=INTEGER},
+      </if>
+      <if test="tripPrice != null">
+        #{tripPrice,jdbcType=INTEGER},
+      </if>
+      <if test="tripDistance != null">
+        #{tripDistance,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.test.demo.entity.DriverTripInfo">
+    update driver_trip_info
+    <set>
+      <if test="routeId != null">
+        route_id = #{routeId,jdbcType=INTEGER},
+      </if>
+      <if test="tripDate != null">
+        trip_date = #{tripDate,jdbcType=DATE},
+      </if>
+      <if test="tripTime != null">
+        trip_time = #{tripTime,jdbcType=TIME},
+      </if>
+      <if test="seatCount != null">
+        seat_count = #{seatCount,jdbcType=INTEGER},
+      </if>
+      <if test="wayTagsId != null">
+        way_tags_id = #{wayTagsId,jdbcType=VARCHAR},
+      </if>
+      <if test="tripStatus != null">
+        trip_status = #{tripStatus,jdbcType=INTEGER},
+      </if>
+      <if test="tripPrice != null">
+        trip_price = #{tripPrice,jdbcType=INTEGER},
+      </if>
+      <if test="tripDistance != null">
+        trip_distance = #{tripDistance,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.test.demo.entity.DriverTripInfo">
+    update driver_trip_info
+    set route_id = #{routeId,jdbcType=INTEGER},
+      trip_date = #{tripDate,jdbcType=DATE},
+      trip_time = #{tripTime,jdbcType=TIME},
+      seat_count = #{seatCount,jdbcType=INTEGER},
+      way_tags_id = #{wayTagsId,jdbcType=VARCHAR},
+      trip_status = #{tripStatus,jdbcType=INTEGER},
+      trip_price = #{tripPrice,jdbcType=INTEGER},
+      trip_distance = #{tripDistance,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

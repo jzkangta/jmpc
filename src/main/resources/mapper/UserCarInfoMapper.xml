@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.test.demo.dao.UserCarInfoMapper">
+  <resultMap id="BaseResultMap" type="com.test.demo.entity.UserCarInfo">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="car_brand" jdbcType="VARCHAR" property="carBrand" />
+    <result column="car_number" jdbcType="VARCHAR" property="carNumber" />
+    <result column="care_color" jdbcType="VARCHAR" property="careColor" />
+    <result column="seat_count" jdbcType="INTEGER" property="seatCount" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, user_id, car_brand, car_number, care_color, seat_count
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user_car_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from user_car_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.test.demo.entity.UserCarInfo">
+    insert into user_car_info (id, user_id, car_brand, 
+      car_number, care_color, seat_count
+      )
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{carBrand,jdbcType=VARCHAR}, 
+      #{carNumber,jdbcType=VARCHAR}, #{careColor,jdbcType=VARCHAR}, #{seatCount,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.test.demo.entity.UserCarInfo">
+    insert into user_car_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="carBrand != null">
+        car_brand,
+      </if>
+      <if test="carNumber != null">
+        car_number,
+      </if>
+      <if test="careColor != null">
+        care_color,
+      </if>
+      <if test="seatCount != null">
+        seat_count,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="carBrand != null">
+        #{carBrand,jdbcType=VARCHAR},
+      </if>
+      <if test="carNumber != null">
+        #{carNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="careColor != null">
+        #{careColor,jdbcType=VARCHAR},
+      </if>
+      <if test="seatCount != null">
+        #{seatCount,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.test.demo.entity.UserCarInfo">
+    update user_car_info
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="carBrand != null">
+        car_brand = #{carBrand,jdbcType=VARCHAR},
+      </if>
+      <if test="carNumber != null">
+        car_number = #{carNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="careColor != null">
+        care_color = #{careColor,jdbcType=VARCHAR},
+      </if>
+      <if test="seatCount != null">
+        seat_count = #{seatCount,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.test.demo.entity.UserCarInfo">
+    update user_car_info
+    set user_id = #{userId,jdbcType=INTEGER},
+      car_brand = #{carBrand,jdbcType=VARCHAR},
+      car_number = #{carNumber,jdbcType=VARCHAR},
+      care_color = #{careColor,jdbcType=VARCHAR},
+      seat_count = #{seatCount,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

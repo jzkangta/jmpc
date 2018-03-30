@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.test.demo.dao.UserRouteInfoMapper">
+  <resultMap id="BaseResultMap" type="com.test.demo.entity.UserRouteInfo">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="start_place" jdbcType="VARCHAR" property="startPlace" />
+    <result column="start_longitude" jdbcType="VARCHAR" property="startLongitude" />
+    <result column="start_latitude" jdbcType="VARCHAR" property="startLatitude" />
+    <result column="start_time" jdbcType="TIME" property="startTime" />
+    <result column="end_place" jdbcType="VARCHAR" property="endPlace" />
+    <result column="end_longitude" jdbcType="VARCHAR" property="endLongitude" />
+    <result column="end_latitude" jdbcType="VARCHAR" property="endLatitude" />
+    <result column="route_status" jdbcType="INTEGER" property="routeStatus" />
+    <result column="route_type" jdbcType="INTEGER" property="routeType" />
+    <result column="start_place_desc" jdbcType="VARCHAR" property="startPlaceDesc" />
+    <result column="end_palsce_desc" jdbcType="VARCHAR" property="endPalsceDesc" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, user_id, start_place, start_longitude, start_latitude, start_time, end_place, 
+    end_longitude, end_latitude, route_status, route_type, start_place_desc, end_palsce_desc
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user_route_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from user_route_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.test.demo.entity.UserRouteInfo">
+    insert into user_route_info (id, user_id, start_place, 
+      start_longitude, start_latitude, start_time, 
+      end_place, end_longitude, end_latitude, 
+      route_status, route_type, start_place_desc, 
+      end_palsce_desc)
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{startPlace,jdbcType=VARCHAR}, 
+      #{startLongitude,jdbcType=VARCHAR}, #{startLatitude,jdbcType=VARCHAR}, #{startTime,jdbcType=TIME}, 
+      #{endPlace,jdbcType=VARCHAR}, #{endLongitude,jdbcType=VARCHAR}, #{endLatitude,jdbcType=VARCHAR}, 
+      #{routeStatus,jdbcType=INTEGER}, #{routeType,jdbcType=INTEGER}, #{startPlaceDesc,jdbcType=VARCHAR}, 
+      #{endPalsceDesc,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.test.demo.entity.UserRouteInfo">
+    insert into user_route_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="startPlace != null">
+        start_place,
+      </if>
+      <if test="startLongitude != null">
+        start_longitude,
+      </if>
+      <if test="startLatitude != null">
+        start_latitude,
+      </if>
+      <if test="startTime != null">
+        start_time,
+      </if>
+      <if test="endPlace != null">
+        end_place,
+      </if>
+      <if test="endLongitude != null">
+        end_longitude,
+      </if>
+      <if test="endLatitude != null">
+        end_latitude,
+      </if>
+      <if test="routeStatus != null">
+        route_status,
+      </if>
+      <if test="routeType != null">
+        route_type,
+      </if>
+      <if test="startPlaceDesc != null">
+        start_place_desc,
+      </if>
+      <if test="endPalsceDesc != null">
+        end_palsce_desc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="startPlace != null">
+        #{startPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="startLongitude != null">
+        #{startLongitude,jdbcType=VARCHAR},
+      </if>
+      <if test="startLatitude != null">
+        #{startLatitude,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null">
+        #{startTime,jdbcType=TIME},
+      </if>
+      <if test="endPlace != null">
+        #{endPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="endLongitude != null">
+        #{endLongitude,jdbcType=VARCHAR},
+      </if>
+      <if test="endLatitude != null">
+        #{endLatitude,jdbcType=VARCHAR},
+      </if>
+      <if test="routeStatus != null">
+        #{routeStatus,jdbcType=INTEGER},
+      </if>
+      <if test="routeType != null">
+        #{routeType,jdbcType=INTEGER},
+      </if>
+      <if test="startPlaceDesc != null">
+        #{startPlaceDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="endPalsceDesc != null">
+        #{endPalsceDesc,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.test.demo.entity.UserRouteInfo">
+    update user_route_info
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="startPlace != null">
+        start_place = #{startPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="startLongitude != null">
+        start_longitude = #{startLongitude,jdbcType=VARCHAR},
+      </if>
+      <if test="startLatitude != null">
+        start_latitude = #{startLatitude,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null">
+        start_time = #{startTime,jdbcType=TIME},
+      </if>
+      <if test="endPlace != null">
+        end_place = #{endPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="endLongitude != null">
+        end_longitude = #{endLongitude,jdbcType=VARCHAR},
+      </if>
+      <if test="endLatitude != null">
+        end_latitude = #{endLatitude,jdbcType=VARCHAR},
+      </if>
+      <if test="routeStatus != null">
+        route_status = #{routeStatus,jdbcType=INTEGER},
+      </if>
+      <if test="routeType != null">
+        route_type = #{routeType,jdbcType=INTEGER},
+      </if>
+      <if test="startPlaceDesc != null">
+        start_place_desc = #{startPlaceDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="endPalsceDesc != null">
+        end_palsce_desc = #{endPalsceDesc,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.test.demo.entity.UserRouteInfo">
+    update user_route_info
+    set user_id = #{userId,jdbcType=INTEGER},
+      start_place = #{startPlace,jdbcType=VARCHAR},
+      start_longitude = #{startLongitude,jdbcType=VARCHAR},
+      start_latitude = #{startLatitude,jdbcType=VARCHAR},
+      start_time = #{startTime,jdbcType=TIME},
+      end_place = #{endPlace,jdbcType=VARCHAR},
+      end_longitude = #{endLongitude,jdbcType=VARCHAR},
+      end_latitude = #{endLatitude,jdbcType=VARCHAR},
+      route_status = #{routeStatus,jdbcType=INTEGER},
+      route_type = #{routeType,jdbcType=INTEGER},
+      start_place_desc = #{startPlaceDesc,jdbcType=VARCHAR},
+      end_palsce_desc = #{endPalsceDesc,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

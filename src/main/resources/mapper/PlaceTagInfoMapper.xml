@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.test.demo.dao.PlaceTagInfoMapper">
+  <resultMap id="BaseResultMap" type="com.test.demo.entity.PlaceTagInfo">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="city_id" jdbcType="INTEGER" property="cityId" />
+    <result column="area_id" jdbcType="INTEGER" property="areaId" />
+    <result column="tag_name" jdbcType="VARCHAR" property="tagName" />
+    <result column="tag_status" jdbcType="INTEGER" property="tagStatus" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="tag_longitude" jdbcType="VARCHAR" property="tagLongitude" />
+    <result column="tag_latitude" jdbcType="VARCHAR" property="tagLatitude" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, city_id, area_id, tag_name, tag_status, create_time, tag_longitude, tag_latitude
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from place_tag_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from place_tag_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.test.demo.entity.PlaceTagInfo">
+    insert into place_tag_info (id, city_id, area_id, 
+      tag_name, tag_status, create_time, 
+      tag_longitude, tag_latitude)
+    values (#{id,jdbcType=INTEGER}, #{cityId,jdbcType=INTEGER}, #{areaId,jdbcType=INTEGER}, 
+      #{tagName,jdbcType=VARCHAR}, #{tagStatus,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{tagLongitude,jdbcType=VARCHAR}, #{tagLatitude,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.test.demo.entity.PlaceTagInfo">
+    insert into place_tag_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="cityId != null">
+        city_id,
+      </if>
+      <if test="areaId != null">
+        area_id,
+      </if>
+      <if test="tagName != null">
+        tag_name,
+      </if>
+      <if test="tagStatus != null">
+        tag_status,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="tagLongitude != null">
+        tag_longitude,
+      </if>
+      <if test="tagLatitude != null">
+        tag_latitude,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="cityId != null">
+        #{cityId,jdbcType=INTEGER},
+      </if>
+      <if test="areaId != null">
+        #{areaId,jdbcType=INTEGER},
+      </if>
+      <if test="tagName != null">
+        #{tagName,jdbcType=VARCHAR},
+      </if>
+      <if test="tagStatus != null">
+        #{tagStatus,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tagLongitude != null">
+        #{tagLongitude,jdbcType=VARCHAR},
+      </if>
+      <if test="tagLatitude != null">
+        #{tagLatitude,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.test.demo.entity.PlaceTagInfo">
+    update place_tag_info
+    <set>
+      <if test="cityId != null">
+        city_id = #{cityId,jdbcType=INTEGER},
+      </if>
+      <if test="areaId != null">
+        area_id = #{areaId,jdbcType=INTEGER},
+      </if>
+      <if test="tagName != null">
+        tag_name = #{tagName,jdbcType=VARCHAR},
+      </if>
+      <if test="tagStatus != null">
+        tag_status = #{tagStatus,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tagLongitude != null">
+        tag_longitude = #{tagLongitude,jdbcType=VARCHAR},
+      </if>
+      <if test="tagLatitude != null">
+        tag_latitude = #{tagLatitude,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.test.demo.entity.PlaceTagInfo">
+    update place_tag_info
+    set city_id = #{cityId,jdbcType=INTEGER},
+      area_id = #{areaId,jdbcType=INTEGER},
+      tag_name = #{tagName,jdbcType=VARCHAR},
+      tag_status = #{tagStatus,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      tag_longitude = #{tagLongitude,jdbcType=VARCHAR},
+      tag_latitude = #{tagLatitude,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
